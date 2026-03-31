@@ -1,0 +1,135 @@
+.fn-ps-dropdown {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    margin-top: 2px;
+    z-index: 9999;
+    background: #fff;
+    border: 1px solid #dbdbdb;
+    border-radius: 8px;
+    box-shadow: 0 4px 35px -10px rgb(0 0 0 / 31%);
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.fn-ps-dropdown.fn-ps-dropdown--open {
+    display: block;
+}
+
+#fn_search .fn-ps-dropdown > .autocomplete-suggestions {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    max-width: none !important;
+    display: table;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+.fn-ps-popular {
+    border-top: 1px solid #dbdbdb58;
+    padding: 8px 10px 10px;
+    box-sizing: border-box;
+}
+
+.fn-ps-popular__title {
+    font-size: 12px;
+    font-weight: 600;
+    color: #333;
+    opacity: 0.85;
+    margin-bottom: 6px;
+}
+
+.fn-ps-popular__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 8px;
+}
+
+.fn-ps-popular__list li {
+    margin: 0;
+}
+
+.fn-ps-popular__item {
+    display: inline-block;
+    border: 1px solid #dbdbdb;
+    background: #f8f8f8;
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 13px;
+    line-height: 1.3;
+    cursor: pointer;
+    color: #333;
+    font-family: inherit;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.fn-ps-popular__item:hover {
+    border-color: #bbb;
+    background: #f0f0f0;
+}
+
+#fn_search .autocomplete-suggestions .autocomplete-suggestion > .fn-ps-thumb,
+#fn_search .autocomplete-suggestions .autocomplete-suggestion > .fn-ps-title,
+#fn_search .autocomplete-suggestions .autocomplete-suggestion > .fn-ps-price {
+    vertical-align: middle !important;
+}
+
+#fn_search .autocomplete-suggestions .autocomplete-suggestion > .fn-ps-thumb {
+    width: 50px !important;
+    min-width: 50px !important;
+    max-width: 50px !important;
+    text-align: center !important;
+}
+
+#fn_search .autocomplete-suggestions .fn-ps-thumb .fn-ps-thumbFrame {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+    width: 42px !important;
+    height: 42px !important;
+    min-width: 42px !important;
+    min-height: 42px !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    border: none !important;
+}
+
+#fn_search .autocomplete-suggestions .fn-ps-thumb .fn-ps-thumbFrame img {
+    display: block !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain !important;
+}
+
+#fn_search .autocomplete-suggestions .fn-ps-thumb .fn-ps-thumbFrame svg {
+    display: block !important;
+    max-width: 28px !important;
+    max-height: 28px !important;
+    width: auto !important;
+    height: auto !important;
+    flex-shrink: 0;
+}
+
+#fn_search .autocomplete-suggestions .fn-ps-thumb .fn-ps-thumbFrame--empty svg {
+    color: #e5e9ed !important;
+}
+
+#fn_search .autocomplete-suggestions .autocomplete-suggestion > .fn-ps-title {
+    color: inherit !important;
+}
+
+#fn_search .autocomplete-suggestions .autocomplete-suggestion > .fn-ps-price {
+    color: inherit !important;
+}

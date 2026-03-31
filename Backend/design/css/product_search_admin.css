@@ -1,0 +1,12 @@
+.okay_list .okay_list_ps_popular_phrase {
+    width: calc(100% - 40px - 80px);
+    min-width: 120px;
+}
+
+.okay_list .okay_list_ps_popular_close {
+    width: 80px;
+}
+
+.btn_close.fn_ps_popular_delete_btn {
+    color: #8c8c8c;
+}

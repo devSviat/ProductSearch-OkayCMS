@@ -1,0 +1,32 @@
+<?php
+
+$lang['sviat_product_discovery_search_title'] = 'Поиск товаров';
+$lang['sviat_product_discovery_search_description'] = 'Подсказки при наборе в поиске. В выдаче учитываются название, описание, артикул и характеристики товара.';
+$lang['sviat__product_search__popular_queries_heading'] = 'Популярные запросы на сайте';
+$lang['sviat__product_search__popular_phrase'] = 'Текст запроса';
+$lang['sviat__product_search__popular_new_placeholder'] = 'Добавить запрос…';
+$lang['sviat__product_search__general_settings'] = 'Основные настройки';
+$lang['sviat__product_search__enable_live_search'] = 'Показывать подсказки при поиске';
+$lang['sviat__product_search__min_query_length'] = 'Минимум символов в запросе';
+$lang['sviat__product_search__suggestion_limit'] = 'Товаров в подсказке';
+$lang['sviat__product_search__name_preview_length'] = 'Символов названия в подсказке';
+$lang['sviat__product_search__translit_section'] = 'Ошибка раскладки или языка';
+$lang['sviat__product_search__translit_notice'] = 'Если этот блок выключен, поиск только по введённому тексту, без других вариантов написания.';
+$lang['sviat__product_search__translit_enabled'] = 'Дополнительный поиск — включить весь блок ниже';
+$lang['sviat__product_search__translit_enabled_tooltip'] = 'Главный переключатель: если выключен — пункты под ним не участвуют в поиске, только введённый текст. Если включён — учитываются раскладка и транслит по правилам из списка ниже.';
+$lang['sviat__product_search__translit_layout_latin_cyr'] = 'Латиница как украинская или ЙЦУКЕН кириллица на QWERTY';
+$lang['sviat__product_search__translit_layout_latin_cyr_tooltip'] = 'Перебираются обе карты с одних латинских клавиш: украинская раскладка и ЙЦУКЕН Windows. Где они расходятся (лат. s → і или ы), в поиск идут оба варианта; у ЙЦУКЕН также ъ, э, ё.';
+$lang['sviat__product_search__translit_phonetic_latin_cyr'] = 'Латиница в кириллицу по звукам';
+$lang['sviat__product_search__translit_phonetic_latin_cyr_tooltip'] = 'Распространённые латинские сочетания по звучанию заменяются на кириллицу. Примеры: sh → ш, zh → ж, ch → ч, yu → ю, ya → я.';
+$lang['sviat__product_search__translit_phonetic_cyr_latin'] = 'Кириллица в латиницу по звукам';
+$lang['sviat__product_search__translit_phonetic_cyr_latin_tooltip'] = 'Когда в каталоге один алфавит, а покупатель ввёл другой — преобразование по звучанию. Примеры: ш → sh, щ → shch, ю → yu, я → ya.';
+$lang['sviat__product_search__translit_layout_cyr_latin'] = 'Набрано кириллицей (украинская или ЙЦУКЕН), но нужна латиница';
+$lang['sviat__product_search__translit_layout_cyr_latin_tooltip'] = 'Для брендов и моделей: позиции украинской или ЙЦУКЕН, а задумывалось латиницей. В поиске оба отображения кириллица → латиница на QWERTY. Пример: «вода» и вариант по ЙЦУКЕН рядом с djlf.';
+$lang['sviat__product_search__translit_shift_commas'] = 'Учитывать символы < и > вместо запятой или точки (вместе с пунктом выше)';
+$lang['sviat__product_search__translit_shift_commas_tooltip'] = 'Дополнительно учитывает пары символов там, где на клавиатуре запятая или точка с Shift. Действует для пункта «кириллица раскладки → латиница» с обеими картами (украинская и ЙЦУКЕН). Пример: если вместо запятой нажали «<», поиск также проверяет вариант с запятой.';
+$lang['sviat__product_search__cache_section'] = 'Скорость: кеш подсказок';
+$lang['sviat__product_search__redis_cache_enabled'] = 'Хранить подсказки в Redis (быстрее при нагрузке)';
+$lang['sviat__product_search__cache_ttl'] = 'Время хранения кеша в секундах';
+$lang['sviat__product_search__cache_ttl_hint'] = '0 — взять значение из настроек модуля Redis.';
+$lang['sviat__product_search__redis_disabled_title'] = 'Redis установлен, но отключён в его настройках';
+$lang['sviat__product_search__redis_disabled_lead'] = 'Кеш подсказок не используется, пока не включите Redis в настройках этого модуля.';

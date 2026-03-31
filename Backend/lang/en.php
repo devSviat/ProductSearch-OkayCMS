@@ -1,0 +1,32 @@
+<?php
+
+$lang['sviat_product_discovery_search_title'] = 'Product search';
+$lang['sviat_product_discovery_search_description'] = 'Live search suggestions. Results can match the product name, description, SKU, and attributes.';
+$lang['sviat__product_search__popular_queries_heading'] = 'Popular searches on the storefront';
+$lang['sviat__product_search__popular_phrase'] = 'Search phrase';
+$lang['sviat__product_search__popular_new_placeholder'] = 'Add phrase…';
+$lang['sviat__product_search__general_settings'] = 'General';
+$lang['sviat__product_search__enable_live_search'] = 'Show live search suggestions';
+$lang['sviat__product_search__min_query_length'] = 'Min. characters in the query';
+$lang['sviat__product_search__suggestion_limit'] = 'Products in suggestions';
+$lang['sviat__product_search__name_preview_length'] = 'Name length in suggestions (characters)';
+$lang['sviat__product_search__translit_section'] = 'Wrong keyboard layout or language';
+$lang['sviat__product_search__translit_notice'] = 'When this is off, search uses only what the customer typed—no extra spelling variants.';
+$lang['sviat__product_search__translit_enabled'] = 'Extra search — enable the whole block below';
+$lang['sviat__product_search__translit_enabled_tooltip'] = 'Master switch: when off, the toggles underneath are ignored—search uses only what was typed. When on, layout and transliteration rules below are applied.';
+$lang['sviat__product_search__translit_layout_latin_cyr'] = 'Latin keys as Ukrainian or JCUKEN Cyrillic on QWERTY';
+$lang['sviat__product_search__translit_layout_latin_cyr_tooltip'] = 'Search tries both layouts from the same Latin keystrokes: Ukrainian and JCUKEN. Where they differ (e.g. Latin s → і vs ы), both strings are used; JCUKEN also maps ъ, э, ё.';
+$lang['sviat__product_search__translit_phonetic_latin_cyr'] = 'Latin to Cyrillic by sound';
+$lang['sviat__product_search__translit_phonetic_latin_cyr_tooltip'] = 'Common Latin letter groups map to Cyrillic by pronunciation. Examples: sh → ш, zh → ж, ch → ч, yu → ю, ya → я.';
+$lang['sviat__product_search__translit_phonetic_cyr_latin'] = 'Cyrillic to Latin by sound';
+$lang['sviat__product_search__translit_phonetic_cyr_latin_tooltip'] = 'Use when the catalog uses one script and the customer types the other—mapping by sound. Examples: ш → sh, щ → shch, ю → yu, я → ya.';
+$lang['sviat__product_search__translit_layout_cyr_latin'] = 'Cyrillic typed (Ukrainian or JCUKEN) but Latin was intended';
+$lang['sviat__product_search__translit_layout_cyr_latin_tooltip'] = 'Physical keys match Ukrainian or JCUKEN while the intended word is Latin. Search uses both Cyrillic→Latin key maps. Example: Cyrillic “вода” and the JCUKEN-derived Latin form alongside djlf.';
+$lang['sviat__product_search__translit_shift_commas'] = 'Treat < and > like comma or period (works with the option above)';
+$lang['sviat__product_search__translit_shift_commas_tooltip'] = 'Also handles shifted symbols where comma/period sit on the keyboard. Applies to the “Cyrillic layout → Latin” option for both key maps (Ukrainian and JCUKEN). Example: if “<” was typed instead of a comma, search also tries the comma variant.';
+$lang['sviat__product_search__cache_section'] = 'Performance: suggestion cache';
+$lang['sviat__product_search__redis_cache_enabled'] = 'Cache suggestions in Redis (faster under load)';
+$lang['sviat__product_search__cache_ttl'] = 'Cache lifetime in seconds';
+$lang['sviat__product_search__cache_ttl_hint'] = '0 — use the value from the Redis module settings.';
+$lang['sviat__product_search__redis_disabled_title'] = 'Redis is installed but turned off in its settings';
+$lang['sviat__product_search__redis_disabled_lead'] = 'Suggestion cache stays off until you enable Redis in that module’s settings.';

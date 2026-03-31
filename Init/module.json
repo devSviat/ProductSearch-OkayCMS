@@ -1,0 +1,22 @@
+{
+  "Okay": "4.5.2",
+  "version": "1.0.0",
+  "moduleName": "Product Search",
+  "vendor": {
+    "email": "devsviat@proton.me",
+    "site": "https://github.com/devSviat"
+  },
+  "modifications": {
+    "front": [
+      {
+        "file": "index.tpl",
+        "changes": [
+          {
+            "find": "<input class=\"fn_search search__input",
+            "replace": "live_search.tpl"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,32 @@
+<?php
+
+$lang['sviat_product_discovery_search_title'] = 'Пошук товарів';
+$lang['sviat_product_discovery_search_description'] = 'Підказки під час набору тексту в пошуку. У результатах ураховуються назва, опис, артикул і характеристики товару.';
+$lang['sviat__product_search__popular_queries_heading'] = 'Популярні запити на сайті';
+$lang['sviat__product_search__popular_phrase'] = 'Текст запиту';
+$lang['sviat__product_search__popular_new_placeholder'] = 'Додати запит…';
+$lang['sviat__product_search__general_settings'] = 'Основні налаштування';
+$lang['sviat__product_search__enable_live_search'] = 'Показувати підказки під час пошуку';
+$lang['sviat__product_search__min_query_length'] = 'Мінімум символів у запиті';
+$lang['sviat__product_search__suggestion_limit'] = 'Товарів у підказці';
+$lang['sviat__product_search__name_preview_length'] = 'Символів назви в підказці';
+$lang['sviat__product_search__translit_section'] = 'Помилка розкладки чи мови';
+$lang['sviat__product_search__translit_notice'] = 'Якщо цей блок вимкнено, пошук лише за тим, що ввели вручну, без підстановки інших варіантів написання.';
+$lang['sviat__product_search__translit_enabled'] = 'Додатковий пошук — увімкнути весь блок нижче';
+$lang['sviat__product_search__translit_enabled_tooltip'] = 'Головний перемикач: вимкнено — усі пункти під цим рядком не беруть участі в пошуку, лише те, що ввели. Увімкнено — працюють розкладка й трансліт за правилами зі списку нижче.';
+$lang['sviat__product_search__translit_layout_latin_cyr'] = 'Латинські літери натиснуті як українською або кацапською (ЙЦУКЕН) розкладкою на QWERTY';
+$lang['sviat__product_search__translit_layout_latin_cyr_tooltip'] = 'Два варіанти з тих самих латинських клавіш: українська розкладка та кацапська ЙЦУКЕН. Обидва перевіряються в пошуку. Приклад: djlf — як «вода» по-українськи; там, де мапи відрізняються (наприклад, латинське s → «і» або «ы»), шукаються обидва варіанти; у ЙЦУКЕН є також ъ, э.';
+$lang['sviat__product_search__translit_phonetic_latin_cyr'] = 'Латиниця як кирилиця за вимовою';
+$lang['sviat__product_search__translit_phonetic_latin_cyr_tooltip'] = 'Поширені латинські сполучення відображаються на кирилицю за звучанням. Приклади: sh → ш, zh → ж, ch → ч, yu → ю, ya → я.';
+$lang['sviat__product_search__translit_phonetic_cyr_latin'] = 'Кирилиця як латиниця за вимовою';
+$lang['sviat__product_search__translit_phonetic_cyr_latin_tooltip'] = 'Коли в каталозі одна абетка, а покупець ввів іншу: кирилицю й латиницю зіставляємо за звучанням. Приклади: ш → sh, щ → shch, ю → yu, я → ya.';
+$lang['sviat__product_search__translit_layout_cyr_latin'] = 'Натиснуто кирилицею (українська або кацапська розкладка), але потрібні латинські літери';
+$lang['sviat__product_search__translit_layout_cyr_latin_tooltip'] = 'Для брендів і моделей: фізичні клавіші української або кацапської ЙЦУКЕН, а вводили латиницю. Шукаються обидва відображення кирилиці → латинські літери на QWERTY. Приклад: «вода» або відповідник по ЙЦУКЕН поруч з варіантом djlf.';
+$lang['sviat__product_search__translit_shift_commas'] = 'Ураховувати символи < і > там, де зазвичай кома або крапка (разом із пунктом вище)';
+$lang['sviat__product_search__translit_shift_commas_tooltip'] = 'Додатково враховує пари символів там, де на клавіатурі кома чи крапка з Shift. Працює з пунктом «латиниця з кириличної розкладки» для обох мап (українська та кацапська ЙЦУКЕН). Приклад: якщо в слові натиснули «<» замість «,», пошук також перевіряє варіант із комою.';
+$lang['sviat__product_search__cache_section'] = 'Швидкість: кеш підказок';
+$lang['sviat__product_search__redis_cache_enabled'] = 'Зберігати підказки в Redis (швидше при багатьох відвідувачах)';
+$lang['sviat__product_search__cache_ttl'] = 'Час зберігання кешу в секундах';
+$lang['sviat__product_search__cache_ttl_hint'] = '0 — використати час із налаштувань модуля Redis.';
+$lang['sviat__product_search__redis_disabled_title'] = 'Redis у системі є, але вимкнений у його налаштуваннях';
+$lang['sviat__product_search__redis_disabled_lead'] = 'Кеш підказок не використовується, поки не увімкнете Redis у налаштуваннях того модуля.';

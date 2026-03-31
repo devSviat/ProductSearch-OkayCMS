@@ -1,0 +1,1 @@
+<input class="fn_live_product_search search__input" type="text" name="keyword" value="{$keyword|escape}" placeholder="{$lang->index_search}" autocomplete="off" aria-label="{$lang->index_search|escape}" data-language="index_search"/>
