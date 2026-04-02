@@ -23,7 +23,6 @@ class Init extends AbstractInit
 
     public function init()
     {
-        $this->registerPopularQueriesEntitySchema();
 
         $this->registerBackendController('ProductSearchAdmin');
         $this->addBackendControllerPermission('ProductSearchAdmin', 'products');
