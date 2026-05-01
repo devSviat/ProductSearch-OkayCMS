@@ -2,7 +2,7 @@
 
 namespace Okay\Modules\Sviat\ProductSearch\Services;
 
-/** Безпечні href/src/SVG для JSON підказок (без javascript:/data: тощо). */
+/** Санітує href/src/SVG у JSON-підказках. */
 final class SuggestionOutputSanitizer
 {
     public static function svgForInlineHtml(string $svg): string

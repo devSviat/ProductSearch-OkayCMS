@@ -201,9 +201,8 @@ class SuggestionProvider
     }
 
     /**
-     * Build a versioned cache key. Tags: PRODUCTS_LIST + PRODUCTS_ALL — any product
-     * add/delete/visibility change or product-card-affecting change must invalidate
-     * search suggestions too.
+     * Формує versioned cache key для підказок.
+     * Теги `plist:global` і `pall:global` скидають кеш при змінах товарів.
      */
     private function buildCacheKey(object $redis, string $query, int $limit, int $currencyId): string
     {

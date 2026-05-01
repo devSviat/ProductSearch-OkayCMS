@@ -237,7 +237,7 @@
                 },
                 true
             );
-            // Не використовувати preventDefault на touch* — тоді на мобільних не спрацьовує click по кнопках.
+            // На touch-подіях не блокуємо default, інакше click на мобільних може не спрацювати.
             hostEl.addEventListener(
                 'touchend',
                 function (e) {

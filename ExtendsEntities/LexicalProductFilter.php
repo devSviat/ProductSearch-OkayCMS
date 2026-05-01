@@ -10,7 +10,7 @@ use Okay\Entities\ProductsEntity as BaseProductsEntity;
 use Okay\Modules\Sviat\ProductSearch\Services\QueryNormalizer;
 use Okay\Modules\Sviat\ProductSearch\Services\SearchTransliteration;
 
-/** Токени keyword + варіанти трансліту; двофазний пошук керується ProductsListSearchExtender. */
+/** Фільтрує за токенами keyword і варіантами трансліту в literal/full фазах. */
 class LexicalProductFilter extends AbstractModuleEntityFilter
 {
     public const PHASE_LITERAL = 'literal';

@@ -10,7 +10,7 @@ use Okay\Modules\Sviat\ProductSearch\ExtendsEntities\LexicalProductFilter;
 use Okay\Modules\Sviat\ProductSearch\Services\QueryNormalizer;
 use Okay\Modules\Sviat\ProductSearch\Services\SearchTransliteration;
 
-/** Упорядкування в каталозі за keyword (плейсхолдери ps_* як у LexicalProductFilter). */
+/** Додає ранжування каталогу за keyword (плейсхолдери `ps_*`). */
 class CatalogIntentRanker implements ExtensionInterface
 {
     private Request $request;

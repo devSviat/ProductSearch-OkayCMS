@@ -7,7 +7,7 @@ use Okay\Helpers\ProductsHelper;
 use Okay\Modules\Sviat\ProductSearch\ExtendsEntities\LexicalProductFilter;
 use Okay\Modules\Sviat\ProductSearch\Services\SearchTransliteration;
 
-/** Якщо literal-пошук пустий — один повторний getList з повним транслітом. */
+/** Якщо literal-пошук порожній — повторює getList у full-фазі. */
 class ProductsListSearchExtender implements ExtensionInterface
 {
     private ProductsHelper $productsHelper;

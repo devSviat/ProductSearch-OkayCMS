@@ -4,7 +4,7 @@ namespace Okay\Modules\Sviat\ProductSearch\Services;
 
 use Okay\Core\Settings;
 
-/** Додаткові написання для пошуку (лат ↔ кирилиця), QWERTY: українська + кацапська (ЙЦУКЕН) в одному блоці налаштувань. */
+/** Генерує варіанти токенів (латиниця/кирилиця та QWERTY-розкладки). */
 class SearchTransliteration
 {
     public const SETTING_ENABLED = 'sviat__product_search__translit_enabled';
@@ -22,7 +22,7 @@ class SearchTransliteration
 
     private const VARIANT_CACHE_MAX = 256;
 
-    /** Ключі налаштувань у порядку бітів для {@see translitCacheSignature()}. */
+    /** Порядок прапорців для підпису кешу в {@see translitCacheSignature()}. */
     private const SIGNATURE_KEYS = [
         self::SETTING_ENABLED,
         self::SETTING_LAYOUT_LATIN_CYR,
@@ -373,7 +373,7 @@ class SearchTransliteration
     }
 
     /**
-     * Латинська QWERTY → кирилиця: ua — українська розкладка, jcuken — кацапська ЙЦУКЕН.
+     * Латинська QWERTY → кирилиця: `ua` (українська), `jcuken` (ЙЦУКЕН).
      *
      * @var array<string, array<string, string>>
      */
