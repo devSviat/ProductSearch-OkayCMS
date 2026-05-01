@@ -181,7 +181,7 @@ class SuggestionProvider
             return null;
         }
 
-        $cached = $redis->get($redis->makeKey(self::REDIS_CACHE_KEY, $this->cacheKeyMeta($query, $limit, $currencyId)));
+        $cached = $redis->get($this->buildCacheKey($redis, $query, $limit, $currencyId));
         return is_array($cached) ? $cached : null;
     }
 
@@ -197,7 +197,21 @@ class SuggestionProvider
         if ($ttl <= 0) {
             $ttl = $redis->getHelperTtl(self::REDIS_CACHE_KEY) ?? self::DEFAULT_CACHE_TTL;
         }
-        $redis->set($redis->makeKey(self::REDIS_CACHE_KEY, $this->cacheKeyMeta($query, $limit, $currencyId)), $suggestions, $ttl);
+        $redis->set($this->buildCacheKey($redis, $query, $limit, $currencyId), $suggestions, $ttl);
+    }
+
+    /**
+     * Build a versioned cache key. Tags: PRODUCTS_LIST + PRODUCTS_ALL — any product
+     * add/delete/visibility change or product-card-affecting change must invalidate
+     * search suggestions too.
+     */
+    private function buildCacheKey(object $redis, string $query, int $limit, int $currencyId): string
+    {
+        return $redis->makeVersionedKey(
+            self::REDIS_CACHE_KEY,
+            ['plist:global', 'pall:global'],
+            $this->cacheKeyMeta($query, $limit, $currencyId)
+        );
     }
 
     private function cacheKeyMeta(string $query, int $limit, int $currencyId): array
