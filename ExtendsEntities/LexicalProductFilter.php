@@ -45,7 +45,6 @@ class LexicalProductFilter extends AbstractModuleEntityFilter
         }
 
         $languages = self::$filterServices[Languages::class];
-        $queryFactory = self::$filterServices[QueryFactory::class];
         $normalizer = self::$filterServices[QueryNormalizer::class];
         $transliteration = self::$filterServices[SearchTransliteration::class];
 
@@ -70,7 +69,7 @@ class LexicalProductFilter extends AbstractModuleEntityFilter
             $featureLikes = [];
             foreach ($variants as $v => $variantForm) {
                 $this->bindVariantValues($index, $v, $variantForm);
-                $featureLikes[] = 'lfv.value LIKE :ps_w_' . $index . '_' . $v . '_feat';
+                $featureLikes[] = 'value LIKE :ps_w_' . $index . '_' . $v . '_feat';
                 $perVariant[] = '(' . implode(' OR ', [
                     "{$langAlias}.name LIKE :ps_w_{$index}_{$v}_name",
                     "{$langAlias}.meta_keywords LIKE :ps_w_{$index}_{$v}_meta",
@@ -80,19 +79,25 @@ class LexicalProductFilter extends AbstractModuleEntityFilter
                 ]) . ')';
             }
 
-            $featureMatch = $queryFactory->newSelect();
-            $featureMatch->from('__products_features_values AS pfv')
-                ->cols(['product_id'])
-                ->leftJoin('__features_values AS fv', 'pfv.value_id = fv.id')
-                ->leftJoin(
-                    '__lang_features_values AS lfv',
-                    'fv.id = lfv.feature_value_id AND lfv.lang_id = ' . $langId
-                )
-                ->where('(' . implode(' OR ', $featureLikes) . ')');
+            // aura/sqlquery 3 прибрав позиційні привʼязки: другим аргументом
+            // where() тепер може бути лише масив іменованих значень, а обʼєкт
+            // запиту дає TypeError уже під час виконання — сторінка пошуку
+            // віддавала б 200 з порожнім результатом.
+            //
+            // Підзапит вбудовуємо текстом, і саме тому він без аліасів і без
+            // JOIN: цитувальник aura проходиться по всій умові й на
+            // конструкції «AS alias ON» ламає лапки, перетворюючи запит на
+            // синтаксично невалідний. Вкладені IN такої проблеми не мають.
+            $featureMatch = 'SELECT product_id FROM __products_features_values'
+                . ' WHERE value_id IN ('
+                . 'SELECT feature_value_id FROM __lang_features_values'
+                . ' WHERE lang_id = ' . $langId
+                . ' AND (' . implode(' OR ', $featureLikes) . ')'
+                . ')';
 
             $this->select->where(
-                '(' . implode(' OR ', $perVariant) . ' OR ' . $tableAlias . '.id IN (?))',
-                $featureMatch
+                '(' . implode(' OR ', $perVariant)
+                . ' OR ' . $tableAlias . '.id IN (' . $featureMatch . '))'
             );
         }
     }
