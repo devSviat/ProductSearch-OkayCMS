@@ -267,7 +267,7 @@
                 <div class="heading_modal">{$btr->index_confirm|escape}</div>
             </div>
             <div class="modal-body">
-                <button type="button" class="btn btn_small btn_blue fn_ps_popular_confirm_delete mx-h">
+                <button type="button" class="btn btn_small btn_blue fn_ps_popular_confirm_delete mx-h" data-dismiss="modal">
                     {include file='svg_icon.tpl' svgId='checked'}
                     <span>{$btr->index_yes|escape}</span>
                 </button>
@@ -298,7 +298,6 @@ $(function () {
             $row.find('input[name="delete_ps_popular[]"]').prop('checked', true);
             psPopDeleteBtn.closest('form').submit();
         }
-        $('#ps_popular_delete_modal').modal('hide');
         psPopDeleteBtn = null;
     });
 });
