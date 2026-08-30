@@ -68,12 +68,20 @@ class LexicalProductFilterTest extends TestCase
         $this->assertStringNotContainsString('value_id IN (', $subquery);
     }
 
-    /** Лапки в підзапиті мають лишитись парними — саме їх ламає «AS alias ON». */
-    public function testFeatureSubqueryKeepsBackticksBalanced(): void
+    /**
+     * Зіпсувавши «AS alias ON», цитувальник лишає відкриту лапку, і в неї
+     * потрапляє шматок запиту з пробілами: `lfv_ps ON `. Кількість лапок при
+     * цьому лишається парною, тож ловити треба саме пробіл усередині них.
+     */
+    public function testNoQuotedIdentifierSwallowsSpaces(): void
     {
         $statement = $this->applyKeyword('delonghi')->getStatement();
 
-        $this->assertSame(0, substr_count($statement, '`') % 2, 'непарна кількість лапок у запиті');
+        $this->assertSame(
+            [],
+            self::quotedIdentifiersWithSpaces($statement),
+            'цитувальник зламав лапки — запит невалідний'
+        );
     }
 
     public function testFeatureSubqueryFiltersByTheCurrentLanguage(): void
@@ -190,6 +198,16 @@ class LexicalProductFilterTest extends TestCase
                 return 3;
             }
         };
+    }
+
+    /** @return string[] */
+    private static function quotedIdentifiersWithSpaces(string $statement): array
+    {
+        preg_match_all('/`[^`]*`/', $statement, $matches);
+
+        return array_values(array_filter($matches[0], static function ($identifier) {
+            return strpos($identifier, ' ') !== false;
+        }));
     }
 
     /** Витягує підзапит за характеристиками — від його SELECT до кінця умови. */
