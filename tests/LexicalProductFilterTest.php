@@ -45,24 +45,50 @@ class LexicalProductFilterTest extends TestCase
      * Цитувальник aura проходиться по всій умові where() і на «AS alias ON»
      * ставить лапки не там, де треба: `__lang_features_values` AS `lfv ON ...`.
      * Запит стає синтаксично невалідним, а помилка видно лише в лозі.
+     * Аліас без AS він цитує коректно, тому джойн тут дозволений.
      */
-    public function testFeatureSubqueryHasNeitherAliasesNorJoins(): void
+    public function testFeatureSubqueryUsesNoAsKeyword(): void
+    {
+        $subquery = $this->featureSubquery($this->applyKeyword('delonghi')->getStatement());
+
+        $this->assertStringNotContainsString(' AS ', $subquery, 'підзапит не має вживати AS');
+        $this->assertStringContainsString('__products_features_values', $subquery);
+        $this->assertStringContainsString('__lang_features_values', $subquery);
+    }
+
+    /**
+     * Вкладений IN змушував базу матеріалізувати всю products_features_values:
+     * сторінка лишалась правильною, лише вчетверо дорожчою.
+     */
+    public function testFeatureSubqueryJoinsInsteadOfNestingIn(): void
+    {
+        $subquery = $this->featureSubquery($this->applyKeyword('delonghi')->getStatement());
+
+        $this->assertStringContainsString('INNER JOIN', $subquery, 'джойн замінили вкладеним IN');
+        $this->assertStringNotContainsString('value_id IN (', $subquery);
+    }
+
+    /**
+     * Зіпсувавши «AS alias ON», цитувальник лишає відкриту лапку, і в неї
+     * потрапляє шматок запиту з пробілами: `lfv_ps ON `. Кількість лапок при
+     * цьому лишається парною, тож ловити треба саме пробіл усередині них.
+     */
+    public function testNoQuotedIdentifierSwallowsSpaces(): void
     {
         $statement = $this->applyKeyword('delonghi')->getStatement();
 
-        $subquery = $this->featureSubquery($statement);
-
-        $this->assertStringNotContainsString(' AS ', $subquery, 'підзапит не має вживати аліасів');
-        $this->assertStringNotContainsString('JOIN', $subquery, 'підзапит не має вживати JOIN');
-        $this->assertStringContainsString('__products_features_values', $subquery);
-        $this->assertStringContainsString('__lang_features_values', $subquery);
+        $this->assertSame(
+            [],
+            self::quotedIdentifiersWithSpaces($statement),
+            'цитувальник зламав лапки — запит невалідний'
+        );
     }
 
     public function testFeatureSubqueryFiltersByTheCurrentLanguage(): void
     {
         $subquery = $this->featureSubquery($this->applyKeyword('delonghi')->getStatement());
 
-        $this->assertStringContainsString('lang_id = 3', $subquery);
+        $this->assertStringContainsString('`lfv_ps`.`lang_id` = 3', $subquery);
     }
 
     /** Кожен токен додає власний набір привʼязок, і всі вони мають значення. */
@@ -174,9 +200,20 @@ class LexicalProductFilterTest extends TestCase
         };
     }
 
+    /** @return string[] */
+    private static function quotedIdentifiersWithSpaces(string $statement): array
+    {
+        preg_match_all('/`[^`]*`/', $statement, $matches);
+
+        return array_values(array_filter($matches[0], static function ($identifier) {
+            return strpos($identifier, ' ') !== false;
+        }));
+    }
+
+    /** Витягує підзапит за характеристиками — від його SELECT до кінця умови. */
     private function featureSubquery(string $statement): string
     {
-        $start = strpos($statement, 'SELECT product_id FROM __products_features_values');
+        $start = strpos($statement, 'SELECT `pfv_ps`.`product_id`');
         $this->assertIsInt($start, 'підзапит за характеристиками не знайдено');
 
         $end = strpos($statement, '))', $start);
