@@ -36,7 +36,7 @@
 
 ## Вимоги
 
-- OkayCMS v4.5.2
+- OkayCMS v4.5.3 (чиста або [форк](https://github.com/devSviat/OkayCMS)); PHP 7.4 або 8.1–8.5
 - Redis (необов’язково, лише для кешу підказок): [devSviat/Redis-OkayCMS](https://github.com/devSviat/Redis-OkayCMS)
 
 ## Встановлення
