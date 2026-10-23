@@ -37,7 +37,7 @@
 ## Вимоги
 
 - PHP 8.4+
-- OkayCMS 4.5.3 (чиста або [форк](https://github.com/devSviat/OkayCMS))
+- OkayCMS 4.5.3 (чиста або [форк](https://github.com/devSviat/OkayCMS-Fork))
 - Перевірено на PHP 8.5 — на чистій OkayCMS 4.5.3 і на форку
 - Redis (необов’язково, лише для кешу підказок): [devSviat/Redis-OkayCMS](https://github.com/devSviat/Redis-OkayCMS)
 
