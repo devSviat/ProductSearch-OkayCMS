@@ -57,11 +57,11 @@ class Init extends AbstractInit
 
     private function registerPopularQueriesEntitySchema(): void
     {
-        $phraseField = (new EntityField('phrase'))->setTypeVarchar(512)->setIsLang();
+        $phraseField = new EntityField('phrase')->setTypeVarchar(512)->setIsLang();
         $this->migrateEntityTable(ProductSearchPopularQueryEntity::class, [
-            (new EntityField('id'))->setIndexPrimaryKey()->setTypeInt(11, false)->setAutoIncrement(),
+            new EntityField('id')->setIndexPrimaryKey()->setTypeInt(11, false)->setAutoIncrement(),
             $phraseField,
-            (new EntityField('position'))->setTypeInt(11, false)->setDefault(0),
+            new EntityField('position')->setTypeInt(11, false)->setDefault(0),
         ]);
         $this->migrateEntityField(ProductSearchPopularQueryEntity::class, $phraseField);
         $this->registerEntityLangInfo(

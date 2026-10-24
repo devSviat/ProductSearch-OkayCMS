@@ -88,7 +88,7 @@ class ProductSearchAdmin extends IndexAdmin
             $deleteIds = $deleteIds !== null && $deleteIds !== '' ? [(int) $deleteIds] : [];
         }
         $deletedIds = [];
-        $candidateIds = array_filter(array_map('intval', $deleteIds));
+        $candidateIds = array_filter(array_map(intval(...), $deleteIds));
         if (!empty($candidateIds)) {
             $popularEntity->delete($candidateIds);
             foreach ($candidateIds as $id) {
@@ -154,7 +154,7 @@ class ProductSearchAdmin extends IndexAdmin
 
     private function getRedisInfo(): array
     {
-        $serviceClass = 'Okay\\Modules\\Sviat\\Redis\\Services\\RedisCacheService';
+        $serviceClass = \Okay\Modules\Sviat\Redis\Services\RedisCacheService::class;
         if (!class_exists($serviceClass)) {
             return ['available' => false, 'enabled' => false];
         }
@@ -169,7 +169,7 @@ class ProductSearchAdmin extends IndexAdmin
             $enabled = method_exists($redisService, 'isEnabled') ? (bool) $redisService->isEnabled() : false;
 
             return ['available' => true, 'enabled' => $enabled];
-        } catch (\Throwable $e) {
+        } catch (\Throwable) {
             return ['available' => false, 'enabled' => false];
         }
     }

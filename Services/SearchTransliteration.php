@@ -14,16 +14,16 @@ class SearchTransliteration
     public const SETTING_LAYOUT_CYR_LATIN = 'sviat__product_search__translit_layout_cyr_latin';
     public const SETTING_SHIFT_COMMAS = 'sviat__product_search__translit_shift_commas';
 
-    private const LAYOUT_UA = 'ua';
+    private const string LAYOUT_UA = 'ua';
 
-    private const LAYOUT_JCUKEN = 'jcuken';
+    private const string LAYOUT_JCUKEN = 'jcuken';
 
-    private const MAX_VARIANTS = 10;
+    private const int MAX_VARIANTS = 10;
 
-    private const VARIANT_CACHE_MAX = 256;
+    private const int VARIANT_CACHE_MAX = 256;
 
     /** Порядок прапорців для підпису кешу в {@see translitCacheSignature()}. */
-    private const SIGNATURE_KEYS = [
+    private const array SIGNATURE_KEYS = [
         self::SETTING_ENABLED,
         self::SETTING_LAYOUT_LATIN_CYR,
         self::SETTING_PHONETIC_LATIN_CYR,
@@ -33,7 +33,7 @@ class SearchTransliteration
     ];
 
     /** @var list<string> */
-    private const EXPANSION_SETTING_KEYS = [
+    private const array EXPANSION_SETTING_KEYS = [
         self::SETTING_LAYOUT_LATIN_CYR,
         self::SETTING_PHONETIC_LATIN_CYR,
         self::SETTING_PHONETIC_CYR_LATIN,
@@ -364,9 +364,7 @@ class SearchTransliteration
             'ia' => 'я',
             'iu' => 'ю',
         ];
-        uksort($raw, static function ($a, $b) {
-            return strlen($b) <=> strlen($a);
-        });
+        uksort($raw, static fn($a, $b) => strlen($b) <=> strlen($a));
         self::$latinMulti = $raw;
 
         return self::$latinMulti;

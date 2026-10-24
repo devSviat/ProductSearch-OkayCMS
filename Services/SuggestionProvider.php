@@ -12,15 +12,15 @@ use Okay\Helpers\ProductsHelper;
 
 class SuggestionProvider
 {
-    private const REDIS_CACHE_SERVICE_CLASS = 'Okay\\Modules\\Sviat\\Redis\\Services\\RedisCacheService';
+    private const string REDIS_CACHE_SERVICE_CLASS = \Okay\Modules\Sviat\Redis\Services\RedisCacheService::class;
 
-    private const REDIS_CACHE_KEY = 'product_search_suggestions';
-    private const DEFAULT_SUGGESTION_LIMIT = 5;
-    private const SUGGESTION_THUMB_SIZE = 50;
-    private const DEFAULT_MIN_QUERY_LENGTH = 2;
-    private const DEFAULT_NAME_PREVIEW_LENGTH = 80;
-    private const DEFAULT_CACHE_TTL = 180;
-    private const CACHE_KEY_VERSION = 3;
+    private const string REDIS_CACHE_KEY = 'product_search_suggestions';
+    private const int DEFAULT_SUGGESTION_LIMIT = 5;
+    private const int SUGGESTION_THUMB_SIZE = 50;
+    private const int DEFAULT_MIN_QUERY_LENGTH = 2;
+    private const int DEFAULT_NAME_PREVIEW_LENGTH = 80;
+    private const int DEFAULT_CACHE_TTL = 180;
+    private const int CACHE_KEY_VERSION = 3;
 
     private QueryNormalizer $normalizer;
 
@@ -253,7 +253,7 @@ class SuggestionProvider
                 return null;
             }
             $this->redis = $redis;
-        } catch (\Throwable $e) {
+        } catch (\Throwable) {
         }
 
         return $this->redis;
