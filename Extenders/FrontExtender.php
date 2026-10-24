@@ -13,7 +13,7 @@ use Okay\Modules\Sviat\ProductSearch\Services\SuggestionOutputSanitizer;
 
 class FrontExtender implements ExtensionInterface
 {
-    private const FRONT_LANG_KEY_TITLE = 'sviat__product_search__popular_title';
+    private const string FRONT_LANG_KEY_TITLE = 'sviat__product_search__popular_title';
 
     private Design $design;
 
@@ -78,7 +78,7 @@ class FrontExtender implements ExtensionInterface
     {
         try {
             $entity = $this->entityFactory->get(ProductSearchPopularQueryEntity::class);
-        } catch (\Throwable $e) {
+        } catch (\Throwable) {
             return [];
         }
 

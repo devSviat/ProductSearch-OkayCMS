@@ -4,9 +4,9 @@ namespace Okay\Modules\Sviat\ProductSearch\Services;
 
 class QueryNormalizer
 {
-    private const MAX_QUERY_LENGTH = 120;
-    private const MAX_TOKENS = 5;
-    private const MIN_TOKEN_LENGTH = 2;
+    private const int MAX_QUERY_LENGTH = 120;
+    private const int MAX_TOKENS = 5;
+    private const int MIN_TOKEN_LENGTH = 2;
 
     public function normalize(string $rawQuery): string
     {
@@ -26,9 +26,7 @@ class QueryNormalizer
         }
 
         $parts = preg_split('/\s+/u', $query) ?: [];
-        $tokens = array_filter($parts, static function ($part) {
-            return $part !== '' && mb_strlen($part) >= self::MIN_TOKEN_LENGTH;
-        });
+        $tokens = array_filter($parts, static fn($part) => $part !== '' && mb_strlen($part) >= self::MIN_TOKEN_LENGTH);
 
         $tokens = array_values(array_unique($tokens));
 

@@ -22,7 +22,7 @@ final class SuggestionOutputSanitizer
         if (preg_match('#^(?i)(javascript|data|vbscript)\s*:#', $url)) {
             return '#';
         }
-        if (strpos($url, '//') === 0) {
+        if (str_starts_with($url, '//')) {
             return '#';
         }
         if ($url[0] === '/' && preg_match('#^/[^\s]*$#u', $url)) {
@@ -53,7 +53,7 @@ final class SuggestionOutputSanitizer
         if (preg_match('#^(?i)(javascript|data|vbscript)\s*:#', $url)) {
             return null;
         }
-        if (strpos($url, '//') === 0) {
+        if (str_starts_with($url, '//')) {
             return null;
         }
         if ($url[0] === '/' && preg_match('#^/[^\s]*$#u', $url)) {
